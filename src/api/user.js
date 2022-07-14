@@ -3,8 +3,7 @@ import axios from 'axios';
 
 export const getAllUsers = async () => {
     try {
-        const res = await axios.get("https://api-utn.herokuapp.com/users");
-        console.log(res);
+        const res = await axios.get("/users");
         return res.data
     } catch (error) {
         console.log(error);

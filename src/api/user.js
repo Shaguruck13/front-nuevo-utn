@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 export const getAllUsers =  () => {
-    fetch["https://api-utn.herokuapp.com/users"]
+    fetch("https://api-utn.herokuapp.com/users")
     .then(res =>{
+        console.log(res.data);
         return res.data
     })
     .catch(error => {

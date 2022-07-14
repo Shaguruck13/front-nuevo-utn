@@ -1,14 +1,23 @@
 import axios from 'axios';
 
+export const getAllUsers =  () => {
+    fetch["https://api-utn.herokuapp.com/users"]
+    .then(res =>{
+        return res.data
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
 
-export const getAllUsers = async () => {
+/* export const getAllUsers = async () => {
     try {
         const res = await axios.get("/users");
         return res.data
     } catch (error) {
         console.log(error);
     }
-}
+} */
 export const getUserByIdReq = async (id) => {
     try {
         const res = await axios.get(`/users/${id}`)

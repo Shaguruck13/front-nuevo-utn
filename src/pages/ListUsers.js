@@ -7,6 +7,8 @@ export function ListUsers() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   
+console.log(users);
+
   const searcher = (e) => {
     setSearch(e.target.value);
     //console.log(e.target.value);
@@ -37,6 +39,7 @@ export function ListUsers() {
           value={search}
           onChange={searcher}
           placeholder="Search for Email @"
+          type="text"
         ></input>
       </div>
 

@@ -5,7 +5,24 @@ import { useNavigate, Link } from "react-router-dom";
 export function ListUsers() {
   const { users } = useUsers();
   const navigate = useNavigate();
-  const [filtered, setFiltered] = useState("");
+  const [search, setSearch] = useState("");
+  
+  const searcher = (e) => {
+    setSearch(e.target.value);
+    //console.log(e.target.value);
+  };
+  //filtrado
+  let result = [];
+
+  if (!search) {
+    console.log("post en el if",users);
+    result = users;
+  } else {
+    result = users.filter((dato) =>
+      dato.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
   return (
     <div>
       <div className="flex justify-evenly items-center pb-1">
@@ -17,7 +34,8 @@ export function ListUsers() {
       <div className="flex justify-center py-10 px-10">
         <input
           className="bg-white w-96 rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-          onChange={(e) => setFiltered(String(e.target.value))}
+          value={search}
+          onChange={searcher}
           placeholder="Search for Email @"
         ></input>
       </div>
@@ -33,8 +51,7 @@ export function ListUsers() {
       {/* map-cards */}
       <div className="container flex justify-around px-8 mx-10 mt-10">
         <div className="h-56 mw-auto grid grid-cols-3 gap-4 content-start container">
-          {users
-            .filter(({ email }) => email.includes(filtered))
+          {result.length > 0 && result
             .map(({ id, name, email, IMG }) => (
               <div key={id} className="text-center mx-2 my-2">
                 <div className="max-w-sm rounded overflow-hidden shadow-lg">

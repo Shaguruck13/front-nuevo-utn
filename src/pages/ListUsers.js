@@ -1,13 +1,17 @@
-import React, { useState } from "react";
-import { useUsers } from "../context/userContext";
+import axios from "axios";
+import React, { useState,useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 export function ListUsers() {
-  const { users } = useUsers();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  
-console.log(users);
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    (async()=>{const res =await axios.get("https://api-utn.herokuapp.com/users")
+     setUsers(res.data)
+    })()
+  }, []);
 
   const searcher = (e) => {
     setSearch(e.target.value);
@@ -39,7 +43,6 @@ console.log(users);
           value={search}
           onChange={searcher}
           placeholder="Search for Email @"
-          type="text"
         ></input>
       </div>
 

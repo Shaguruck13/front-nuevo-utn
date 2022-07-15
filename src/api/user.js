@@ -13,7 +13,7 @@ const axios = require("axios")
 
 export const getAllUsers = async () => {
     try {
-        const res = await axios.get("/users");
+        const res = await axios.get("https://api-utn.herokuapp.com/users");
         return res.data
     } catch (error) {
         console.log(error);
